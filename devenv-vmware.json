@@ -1,10 +1,9 @@
 {
   "variables": {
-    "ssh_name": "ianmcs",
-    "ssh_pass": "pass",
+    "ssh_name": "packer",
+    "ssh_pass": "packer",
     "hostname": "Dev"
   },
-
   "builders": [
     {
       "type": "vmware-iso",
@@ -14,7 +13,7 @@
       "ssh_username": "{{user `ssh_name`}}",
       "ssh_password": "{{user `ssh_pass`}}",
       "ssh_wait_timeout": "20m",
-      "http_directory" : "preseeds",
+      "http_directory" : "http",
       "http_port_min" : 9001,
       "http_port_max" : 9001,
       "shutdown_command": "echo {{user `ssh_pass`}} | sudo -S shutdown -P now",
@@ -32,7 +31,12 @@
     }
   ],
   "provisioners": [{
-      "type": "salt-masterless",
-      "local_state_tree": "salt/salty-dev"
+      "type": "shell",
+      "execute_command": "echo {{user `ssh_pass`}} | sudo -S sh '{{ .Path }}'",
+      "scripts": [
+          "scripts/tools/apt.sh",
+          "scripts/tools/git.sh",
+          "scripts/tools/emacs.sh"
+      ]
   }]
 }
