@@ -35,6 +35,7 @@
       "execute_command": "echo {{user `ssh_pass`}} | sudo -S sh '{{ .Path }}'",
       "scripts": [
           "scripts/tools/apt.sh",
+          "scripts/tools/standard_packages.sh",
           "scripts/tools/git.sh",
           "scripts/tools/emacs.sh"
       ]
