@@ -37,7 +37,8 @@
           "scripts/tools/apt.sh",
           "scripts/tools/standard_packages.sh",
           "scripts/tools/git.sh",
-          "scripts/tools/emacs.sh"
+          "scripts/tools/emacs.sh",
+          "scripts/tools/clojure.sh"
       ]
   }]
 }
